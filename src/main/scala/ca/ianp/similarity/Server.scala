@@ -4,7 +4,7 @@ import org.http4s.server.blaze.BlazeBuilder
 
 object Server extends App {
   BlazeBuilder.bindHttp(8080)
-    .mountService(HelloWorld.service, "/")
+    .mountService(CheckService.service, "/")
     .run
     .awaitShutdown()
 }
