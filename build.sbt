@@ -10,3 +10,8 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.6.4"
+
+resolvers += Resolver.sonatypeRepo("releases")
+
+libraryDependencies +=
+  "com.github.alexarchambault" %% "argonaut-shapeless_6.2" % "1.2.0-M4"
