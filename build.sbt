@@ -15,3 +15,6 @@ resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies +=
   "com.github.alexarchambault" %% "argonaut-shapeless_6.2" % "1.2.0-M4"
+
+libraryDependencies += "com.typesafe.slick" % "slick_2.12" % "3.2.0-RC1"
+libraryDependencies += "org.xerial" % "sqlite-jdbc" % "3.16.1"

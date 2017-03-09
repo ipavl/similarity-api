@@ -1,4 +1,5 @@
 jplag.jar
+*.sqlite3
 
 ### Scala ###
 *.class
