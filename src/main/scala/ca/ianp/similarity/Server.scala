@@ -10,7 +10,7 @@ object Server extends App {
   val submissions = TableQuery[Submissions]
   db.run(submissions.schema.create)
 
-  BlazeBuilder.bindHttp(8080)
+  BlazeBuilder.bindHttp(4910)
     .mountService(CheckService.service, "/")
     .run
     .awaitShutdown()
