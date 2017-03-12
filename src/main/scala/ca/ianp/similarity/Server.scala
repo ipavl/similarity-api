@@ -1,14 +1,11 @@
 package ca.ianp.similarity
 
-import ca.ianp.similarity.data.tables.Submissions
+import ca.ianp.similarity.models.Database
 
 import org.http4s.server.blaze.BlazeBuilder
-import slick.driver.SQLiteDriver.api._
 
 object Server extends App {
-  val db = Database.forURL("jdbc:sqlite:similarity.sqlite3", driver = "org.sqlite.JDBC")
-  val submissions = TableQuery[Submissions]
-  db.run(submissions.schema.create)
+  Database.create()
 
   BlazeBuilder.bindHttp(4910)
     .mountService(CheckService.service, "/")

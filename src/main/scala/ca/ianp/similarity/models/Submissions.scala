@@ -1,4 +1,4 @@
-package ca.ianp.similarity.data.tables
+package ca.ianp.similarity.models
 
 import argonaut._, Argonaut._
 import slick.driver.SQLiteDriver.api._
@@ -11,8 +11,21 @@ case class Submission(
 )
 
 object Submission {
+  import scala.concurrent.Future
+
+  val submissions = TableQuery[Submissions]
+
   implicit def SubmissionCodecJson: CodecJson[Submission] =
     casecodec3(Submission.apply, Submission.unapply)("submitter", "jplag_result", "id")
+
+  def add(submission: Submission): Unit = {
+    db.run(submissions += submission)
+  }
+
+  def getById(submissionId: Int): Future[Seq[Submission]] = {
+    val query = submissions.filter(_.id === submissionId)
+    db.run(query.result)
+  }
 }
 
 class Submissions(tag: Tag) extends Table[Submission](tag, "SUBMISSIONS") {

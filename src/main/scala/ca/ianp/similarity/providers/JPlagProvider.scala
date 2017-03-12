@@ -1,7 +1,7 @@
 package ca.ianp.similarity.providers
 
 import ca.ianp.similarity.Provider
-import ca.ianp.similarity.data.CheckRequestBody
+import ca.ianp.similarity.models.CheckRequestBody
 
 import scala.sys.process._
 

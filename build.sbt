@@ -13,6 +13,7 @@ libraryDependencies ++= Seq(
   "com.github.alexarchambault" %% "argonaut-shapeless_6.2" % "1.2.0-M4",
 
   "com.typesafe.slick" % "slick_2.12" % "3.2.0-RC1",
+  "com.typesafe.slick" %% "slick-hikaricp" % "3.2.0-RC1",
   "org.xerial" % "sqlite-jdbc" % "3.16.1",
   "org.slf4j" % "slf4j-simple" % "1.6.4"
 )
