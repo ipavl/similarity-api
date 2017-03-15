@@ -2,8 +2,10 @@ package ca.ianp.similarity.providers
 
 import ca.ianp.similarity.Provider
 import ca.ianp.similarity.models.CheckRequestBody
+import ca.ianp.similarity.models.Submission
 
 import scala.sys.process._
+import scala.compat.Platform.EOL
 
 class JPlagProvider extends Provider {
 
@@ -19,6 +21,18 @@ class JPlagProvider extends Provider {
         case "java" => "java17"
         case "c" | "cpp" => "c/c++"
       }
+  }
+
+  def convertOutput(outputData: String): Array[Submission] = {
+    val pattern = "Comparing (.*)-(.*): (.*)".r
+    val lines = outputData.split(EOL).filter(_.startsWith("Comparing"))
+
+    lines map { line =>
+      pattern.findFirstIn(line) match {
+        case Some(pattern(user1, user2, similarity)) =>
+          new Submission(user1, user2, similarity.toDouble)
+      }
+    }
   }
 
   def runChecker(settings: CheckRequestBody): String = {

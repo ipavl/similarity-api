@@ -5,7 +5,8 @@ import slick.driver.SQLiteDriver.api._
 import slick.lifted.{ProvenShape}
 
 case class Submission(
-  submitter: String,
+  studentA: String,
+  studentB: String,
   jplag_result: Double,
   id: Int = 0
 )
@@ -16,7 +17,7 @@ object Submission {
   val submissions = TableQuery[Submissions]
 
   implicit def SubmissionCodecJson: CodecJson[Submission] =
-    casecodec3(Submission.apply, Submission.unapply)("submitter", "jplag_result", "id")
+    casecodec4(Submission.apply, Submission.unapply)("studentA", "studentB", "jplag_result", "id")
 
   def add(submission: Submission): Unit = {
     db.run(submissions += submission)
@@ -28,12 +29,13 @@ object Submission {
   }
 }
 
-class Submissions(tag: Tag) extends Table[Submission](tag, "SUBMISSIONS") {
+class Submissions(tag: Tag) extends Table[Submission](tag, "submissions") {
 
-  def id: Rep[Int] = column[Int]("SUB_ID", O.PrimaryKey, O.AutoInc)
-  def submitter: Rep[String] = column[String]("SUBMITTER")
-  def jplag_result: Rep[Double] = column[Double]("JPLAG_RESULT")
+  def id: Rep[Int] = column[Int]("id", O.PrimaryKey, O.AutoInc)
+  def studentA: Rep[String] = column[String]("student_a")
+  def studentB: Rep[String] = column[String]("student_b")
+  def jPlagResult: Rep[Double] = column[Double]("jplag_result")
   
-  def * = (submitter, jplag_result, id) <> ((Submission.apply _).tupled, Submission.unapply)
+  def * = (studentA, studentB, jPlagResult, id) <> ((Submission.apply _).tupled, Submission.unapply)
 
 }

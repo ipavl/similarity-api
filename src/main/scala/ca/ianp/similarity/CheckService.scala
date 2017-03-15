@@ -21,9 +21,11 @@ object CheckService {
     case req @ POST -> Root / "check" =>
       req.as(jsonOf[CheckRequestBody]).flatMap(settings => {
         val jPlagProvider = new JPlagProvider()
-        val output = jPlagProvider.runChecker(settings)
+        val results = jPlagProvider.convertOutput(jPlagProvider.runChecker(settings))
 
-        Submission.add(Submission("test", 39.24))
+        for (result <- results) {
+          Submission.add(result)
+        }
 
         Ok()
       })
