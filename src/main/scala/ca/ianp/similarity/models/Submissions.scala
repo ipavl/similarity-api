@@ -2,7 +2,6 @@ package ca.ianp.similarity.models
 
 import argonaut._, Argonaut._
 import slick.driver.SQLiteDriver.api._
-import slick.lifted.{ProvenShape}
 
 case class Submission(
   studentA: String,
