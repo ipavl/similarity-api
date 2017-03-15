@@ -4,7 +4,7 @@ similarity-api
 Usage
 -----
 
-A MySQL database will need to be set up and configured in `src/main/resources/application.conf`.
+A MySQL database will need to be set up and configured in `src/main/resources/application.conf`. [Redis](https://redis.io/) will also need to be installed and running on localhost port 6379.
 
 Using [sbt](http://www.scala-sbt.org/):
 

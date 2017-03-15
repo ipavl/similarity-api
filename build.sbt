@@ -12,6 +12,8 @@ libraryDependencies ++= Seq(
 
   "com.github.alexarchambault" %% "argonaut-shapeless_6.2" % "1.2.0-M4",
 
+  "net.debasishg" %% "redisclient" % "3.3",
+
   "com.typesafe.slick" % "slick_2.12" % "3.2.0-RC1",
   "com.typesafe.slick" %% "slick-hikaricp" % "3.2.0-RC1",
   "mysql" % "mysql-connector-java" % "6.0.6",

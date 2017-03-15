@@ -14,7 +14,11 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 
+import com.redis._
+
 object CheckService {
+  val redis = new RedisClient("localhost", 6379)
+
   val service = HttpService {
     case req @ POST -> Root / "check" =>
       req.as(jsonOf[CheckRequestBody]).flatMap(settings => {
@@ -31,7 +35,24 @@ object CheckService {
         Ok()
       })
 
-    case GET -> Root / "results" / IntVar(submissionId) =>
-      Ok(Submission.getById(submissionId).map(_.toList.asJson))
+    case GET -> Root / "results" / IntVar(submissionId) => {
+      val stored = redis.get(submissionId)
+
+      stored match {
+        case Some(result) => {
+          Ok(result)
+        }
+
+        case None => {
+          val result = Submission.getById(submissionId).map(_.toList.asJson)
+
+          result map {
+            redis.setex(submissionId, 3600, _)
+          }
+
+          Ok(result)
+        }
+      }
+    }
   }
 }
