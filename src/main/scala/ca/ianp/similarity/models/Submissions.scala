@@ -7,7 +7,7 @@ import slick.lifted.{ProvenShape}
 case class Submission(
   studentA: String,
   studentB: String,
-  jplag_result: Double,
+  jPlagResult: Double,
   id: Int = 0
 )
 
@@ -17,7 +17,7 @@ object Submission {
   val submissions = TableQuery[Submissions]
 
   implicit def SubmissionCodecJson: CodecJson[Submission] =
-    casecodec4(Submission.apply, Submission.unapply)("studentA", "studentB", "jplag_result", "id")
+    casecodec4(Submission.apply, Submission.unapply)("studentA", "studentB", "jPlagResult", "id")
 
   def add(submission: Submission): Unit = {
     db.run(submissions += submission)
