@@ -1,6 +1,6 @@
 package ca.ianp.similarity.providers
 
-import ca.ianp.similarity.Provider
+import ca.ianp.similarity.providers.Provider
 import ca.ianp.similarity.models.CheckRequestBody
 import ca.ianp.similarity.models.Submission
 

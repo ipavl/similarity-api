@@ -1,4 +1,4 @@
-package ca.ianp.similarity
+package ca.ianp.similarity.providers
 
 import ca.ianp.similarity.models.CheckRequestBody
 import ca.ianp.similarity.models.Submission
