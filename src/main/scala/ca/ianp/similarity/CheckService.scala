@@ -18,11 +18,14 @@ object CheckService {
   val service = HttpService {
     case req @ POST -> Root / "check" =>
       req.as(jsonOf[CheckRequestBody]).flatMap(settings => {
-        val jPlagProvider = new JPlagProvider()
-        val results = jPlagProvider.convertOutput(jPlagProvider.runChecker(settings))
+        // Process submissions asynchronous to not block the consuming application
+        Future {
+          val jPlagProvider = new JPlagProvider()
+          val results = jPlagProvider.convertOutput(jPlagProvider.runChecker(settings))
 
-        for (result <- results) {
-          Submission.add(result)
+          for (result <- results) {
+            Submission.add(result)
+          }
         }
 
         Ok()
