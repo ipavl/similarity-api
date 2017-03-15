@@ -4,6 +4,8 @@ similarity-api
 Usage
 -----
 
+A MySQL database will need to be set up and configured in `src/main/resources/application.conf`.
+
 Using [sbt](http://www.scala-sbt.org/):
 
 * `sbt run` to run the service

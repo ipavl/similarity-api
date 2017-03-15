@@ -10,8 +10,6 @@ import org.http4s.dsl._
 import _root_.argonaut._, Argonaut._, ArgonautShapeless._
 import org.http4s.argonaut._
 
-import slick.driver.SQLiteDriver.api._
-
 import scala.concurrent._
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global

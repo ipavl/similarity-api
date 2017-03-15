@@ -1,7 +1,7 @@
 package ca.ianp.similarity.models
 
 import argonaut._, Argonaut._
-import slick.driver.SQLiteDriver.api._
+import slick.driver.MySQLDriver.api._
 
 case class Submission(
   studentA: String,

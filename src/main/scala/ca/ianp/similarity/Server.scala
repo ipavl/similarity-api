@@ -1,11 +1,11 @@
 package ca.ianp.similarity
 
-import ca.ianp.similarity.models.Database
+import ca.ianp.similarity.models.Schema
 
 import org.http4s.server.blaze.BlazeBuilder
 
 object Server extends App {
-  Database.create()
+  Schema.create()
 
   BlazeBuilder.bindHttp(4910)
     .mountService(CheckService.service, "/")
