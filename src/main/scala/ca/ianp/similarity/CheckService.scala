@@ -25,10 +25,14 @@ object CheckService {
         // Process submissions asynchronous to not block the consuming application
         Future {
           val jPlagProvider = new JPlagProvider()
-          val results = jPlagProvider.convertOutput(jPlagProvider.runChecker(settings))
+          val results = jPlagProvider.convertOutput(jPlagProvider.runChecker(settings)).sortWith(_.jPlagResult < _.jPlagResult)
 
-          for (result <- results) {
-            Submission.add(result)
+          // Always store the max result
+          Submission.add(results.last)
+
+          // Store all results above the given threshold excluding the already-stored max
+          for (result <- results.filter(_.jPlagResult >= settings.threshold).dropRight(1)) {
+              Submission.add(result)
           }
         }
 
