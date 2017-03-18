@@ -22,14 +22,14 @@ class JPlagProvider extends Provider {
       }
   }
 
-  def convertOutput(outputData: String): Array[Submission] = {
+  def convertOutput(settings: CheckRequestBody, outputData: String): Array[Submission] = {
     val pattern = "Comparing (.*)-(.*): (.*)".r
     val lines = outputData.split(EOL).filter(_.startsWith("Comparing"))
 
     lines map { line =>
       pattern.findFirstIn(line) match {
         case Some(pattern(user1, user2, similarity)) =>
-          new Submission(user1, user2, similarity.toDouble)
+          new Submission(user1, user2, settings.assignmentId, similarity.toDouble)
       }
     }
   }

@@ -8,7 +8,7 @@ trait Provider {
 
     def translateLanguageIdentifier(language: String): String
 
-    def convertOutput(outputData: String): Array[Submission]
+    def convertOutput(settings: CheckRequestBody, outputData: String): Array[Submission]
 
     def runChecker(settings: CheckRequestBody): String
 }

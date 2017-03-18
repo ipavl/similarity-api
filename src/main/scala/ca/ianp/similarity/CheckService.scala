@@ -25,7 +25,8 @@ object CheckService {
         // Process submissions asynchronous to not block the consuming application
         Future {
           val jPlagProvider = new JPlagProvider()
-          val results = jPlagProvider.convertOutput(jPlagProvider.runChecker(settings)).sortWith(_.jPlagResult < _.jPlagResult)
+          val output = jPlagProvider.runChecker(settings)
+          val results = jPlagProvider.convertOutput(settings, output).sortWith(_.jPlagResult < _.jPlagResult)
 
           // Always store the max result
           Submission.add(results.last)
@@ -39,8 +40,9 @@ object CheckService {
         Ok()
       })
 
-    case GET -> Root / "results" / IntVar(submissionId) => {
-      val stored = redis.get(submissionId)
+    case GET -> Root / "assignments" / IntVar(assignmentId) / "students" / studentId => {
+      val cacheKey = s"result:${assignmentId}:${studentId}"
+      val stored = redis.get(cacheKey)
 
       stored match {
         case Some(result) => {
@@ -48,10 +50,10 @@ object CheckService {
         }
 
         case None => {
-          val result = Submission.getById(submissionId).map(_.toList.asJson)
+          val result = Submission.getStudentAssignmentResults(assignmentId, studentId).map(_.toList.asJson)
 
           result map {
-            redis.setex(submissionId, 3600, _)
+            redis.setex(cacheKey, 3600, _)
           }
 
           Ok(result)
