@@ -46,7 +46,17 @@ object CheckService {
 
       stored match {
         case Some(result) => {
-          Ok(result)
+          // Parse returns a Scalaz "Either" of \/[String, Json] representing an error or the JSON
+          Parse.parse(result) match {
+            case Right(r) => Ok(r)
+            case Left(r) => {
+              // This should only happen if the stored data is malformed for some reason, so just
+              // remove the faulty entry and ask the client to try again so they get a fresh value.
+              println(s"Error getting cached data for key ${cacheKey}: ${r}")
+              redis.del(cacheKey)
+              InternalServerError(jSingleObject("error", "Internal server error. Please try again.".asJson))
+            }
+          }
         }
 
         case None => {
