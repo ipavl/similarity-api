@@ -2,6 +2,7 @@ package ca.ianp.similarity
 
 import ca.ianp.similarity.providers._
 import ca.ianp.similarity.models._
+import ca.ianp.similarity.Cache._
 
 import org.http4s._
 import org.http4s.server._
@@ -42,32 +43,12 @@ object CheckService {
 
     case GET -> Root / "assignments" / IntVar(assignmentId) / "students" / studentId => {
       val cacheKey = s"result:${assignmentId}:${studentId}"
-      val stored = redis.get(cacheKey)
+      val result = Cache.getOrFetch(cacheKey,
+                                    Submission.getStudentAssignmentResults(assignmentId, studentId))
 
-      stored match {
-        case Some(result) => {
-          // Parse returns a Scalaz "Either" of \/[String, Json] representing an error or the JSON
-          Parse.parse(result) match {
-            case Right(r) => Ok(r)
-            case Left(r) => {
-              // This should only happen if the stored data is malformed for some reason, so just
-              // remove the faulty entry and ask the client to try again so they get a fresh value.
-              println(s"Error getting cached data for key ${cacheKey}: ${r}")
-              redis.del(cacheKey)
-              InternalServerError(jSingleObject("error", "Internal server error. Please try again.".asJson))
-            }
-          }
-        }
-
-        case None => {
-          val result = Submission.getStudentAssignmentResults(assignmentId, studentId).map(_.toList.asJson)
-
-          result map {
-            redis.setex(cacheKey, 3600, _)
-          }
-
-          Ok(result)
-        }
+      result match {
+        case Right(x) => Ok(x)
+        case Left(x) => InternalServerError(x)
       }
     }
   }
