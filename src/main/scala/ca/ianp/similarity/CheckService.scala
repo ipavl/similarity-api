@@ -15,11 +15,7 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 
-import com.redis._
-
 object CheckService {
-  val redis = new RedisClient("localhost", 6379)
-
   val service = HttpService {
     case req @ POST -> Root / "check" =>
       req.as(jsonOf[CheckRequestBody]).flatMap(settings => {
