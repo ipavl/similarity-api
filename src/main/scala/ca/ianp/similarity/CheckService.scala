@@ -39,13 +39,9 @@ object CheckService {
 
     case GET -> Root / "assignments" / IntVar(assignmentId) / "students" / studentId => {
       val cacheKey = s"result:${assignmentId}:${studentId}"
-      val result = Cache.getOrFetch(cacheKey,
-                                    Submission.getStudentAssignmentResults(assignmentId, studentId))
 
-      result match {
-        case Right(x) => Ok(x)
-        case Left(x) => InternalServerError(x)
-      }
+      Ok(Cache.getOrFetch(cacheKey,
+                          Submission.getStudentAssignmentResults(assignmentId, studentId)))
     }
   }
 }
