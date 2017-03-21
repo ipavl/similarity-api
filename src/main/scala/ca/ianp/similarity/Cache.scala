@@ -29,7 +29,7 @@ object Cache {
    *          returned by the given fn if run itself
    */
   def getOrFetch(cacheKey: String,
-                 fn: Future[Seq[Submission]],
+                 fn: => Future[Seq[Submission]],
                  expiry: Long = DefaultExpiry): Future[Json] = {
 
     val stored = redis.get(cacheKey)
@@ -65,7 +65,7 @@ object Cache {
    *          returned by the given fn if run itself
    */
   private def createAndSet(cacheKey: String,
-                   fn: Future[Seq[Submission]],
+                   fn: => Future[Seq[Submission]],
                    expiry: Long = DefaultExpiry): Future[Json] = {
 
     val result = fn.map(_.toList.asJson)
