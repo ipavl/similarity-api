@@ -37,7 +37,7 @@ class JPlagProvider extends Provider {
   def runChecker(settings: CheckRequestBody): String = {
     val language = translateLanguageIdentifier(settings.language)
 
-    val cmd = s"java -jar jplag.jar -l ${language} -s corpus/"
+    val cmd = s"java -jar jplag.jar -l ${language} -s ${settings.directory}"
     val output = cmd.!!
 
     output
