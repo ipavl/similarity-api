@@ -27,10 +27,14 @@ object WebService {
 
           // Always store the max result
           Submission.add(results.last)
+          Cache.clearKey(s"result:${settings.assignmentId}:${results.last.studentA}")
+          Cache.clearKey(s"result:${settings.assignmentId}:${results.last.studentB}")
 
           // Store all results above the given threshold excluding the already-stored max
           for (result <- results.filter(_.jPlagResult >= settings.threshold).dropRight(1)) {
               Submission.add(result)
+              Cache.clearKey(s"result:${settings.assignmentId}:${result.studentA}")
+              Cache.clearKey(s"result:${settings.assignmentId}:${result.studentB}")
           }
         }
 

@@ -55,6 +55,14 @@ object Cache {
     }
   }
 
+  /** Removes key from the cache.
+   *
+   *  @param cacheKey the key to remove
+   */
+  def clearKey(cacheKey: String): Unit = {
+    redis.del(cacheKey)
+  }
+
   /** Returns the value returned by fn and sets it in the cache for cacheKey.
    *
    *  @param cacheKey the key to look up
