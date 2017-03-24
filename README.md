@@ -4,7 +4,7 @@ similarity-api
 Prerequisites
 -------------
 
-A MySQL database will need to be set up and configured in `src/main/resources/application.conf`. These values can also be set by setting the `SIMILARITY_DB_USER`, `SIMILARITY_DB_USER`, and `SIMILARITY_DB_PASSWORD` environment variables.
+A MySQL database will need to be set up and configured in `src/main/resources/application.conf`. These values can also be set by setting the `SIMILARITY_DB_URL`, `SIMILARITY_DB_USER`, and `SIMILARITY_DB_PASSWORD` environment variables.
 
 [Redis](https://redis.io/) will also need to be installed and running on localhost port 6379.
 
