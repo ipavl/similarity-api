@@ -8,7 +8,7 @@ object Server extends App {
   Schema.create()
 
   BlazeBuilder.bindHttp(4910)
-    .mountService(CheckService.service, "/")
+    .mountService(WebService.service, "/")
     .run
     .awaitShutdown()
 }
