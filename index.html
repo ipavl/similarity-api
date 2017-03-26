@@ -200,7 +200,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,6 +210,7 @@
     <div class="tocify-wrapper">
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="php">php</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -257,6 +258,17 @@ submissions
   -X POST
   -d @postdata.json
   --header <span class="s2">"Content-Type:application/json"</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GuzzleHttp\Client</span><span class="p">([</span><span class="s1">'base_uri'</span> <span class="o">=&gt;</span> <span class="s1">'http://localhost:4910/'</span><span class="p">]);</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">post</span><span class="p">(</span><span class="s1">'check'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'json'</span> <span class="o">=&gt;</span>
+  <span class="p">[</span>
+    <span class="s1">'assignmentId'</span> <span class="o">=&gt;</span> <span class="mi">33</span><span class="p">,</span>
+    <span class="s1">'threshold'</span> <span class="o">=&gt;</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s1">'directory'</span> <span class="o">=&gt;</span> <span class="s1">'submissions/CS110_W17/A1'</span><span class="p">,</span>
+    <span class="s1">'language'</span> <span class="o">=&gt;</span> <span class="s1">'c'</span><span class="p">,</span>
+  <span class="p">]</span>
+<span class="p">]);</span>
 </code></pre>
 <p>This endpoint signals the similarity checker to run a check using the given settings.</p>
 
@@ -299,6 +311,12 @@ submissions
 
 <h2 id="retrieve-results-for-student">Retrieve Results for Student</h2>
 <pre class="highlight shell tab-shell"><code>curl http://localhost:4910/assignments/33/students/jdoe05
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GuzzleHttp\Client</span><span class="p">([</span><span class="s1">'base_uri'</span> <span class="o">=&gt;</span> <span class="s1">'http://localhost:4910/'</span><span class="p">]);</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'assignments/33/students/jdoe05'</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -342,6 +360,12 @@ submissions
 
 <h2 id="retrieve-results-for-all-students">Retrieve Results for All Students</h2>
 <pre class="highlight shell tab-shell"><code>curl http://localhost:4910/assignments/33/students
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GuzzleHttp\Client</span><span class="p">([</span><span class="s1">'base_uri'</span> <span class="o">=&gt;</span> <span class="s1">'http://localhost:4910/'</span><span class="p">]);</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'assignments/33/students'</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -434,6 +458,7 @@ submissions
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="php">php</a>
           </div>
       </div>
     </div>
