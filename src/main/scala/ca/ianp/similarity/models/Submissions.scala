@@ -28,6 +28,11 @@ object Submission {
     db.run(query.result)
   }
 
+  def getAssignmentResults(assignmentId: Int): Future[Seq[Submission]] = {
+    val query = submissions.filter(_.assignmentId === assignmentId)
+    db.run(query.result)
+  }
+
   def getStudentAssignmentResults(assignmentId: Int, studentId: String): Future[Seq[Submission]] = {
     val query = submissions.filter(s => s.assignmentId === assignmentId
       && (s.studentA === studentId || s.studentB === studentId))

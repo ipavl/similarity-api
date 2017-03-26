@@ -36,10 +36,19 @@ object WebService {
               Cache.clearKey(s"result:${settings.assignmentId}:${result.studentA}")
               Cache.clearKey(s"result:${settings.assignmentId}:${result.studentB}")
           }
+
+          Cache.clearKey(s"result:${settings.assignmentId}")
         }
 
         Ok()
       })
+
+    case GET -> Root / "assignments" / IntVar(assignmentId) / "students" => {
+      val cacheKey = s"result:${assignmentId}"
+
+      Ok(Cache.getOrFetch(cacheKey,
+                          Submission.getAssignmentResults(assignmentId)))
+    }
 
     case GET -> Root / "assignments" / IntVar(assignmentId) / "students" / studentId => {
       val cacheKey = s"result:${assignmentId}:${studentId}"
