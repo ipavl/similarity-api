@@ -254,9 +254,12 @@ submissions
 </pre>
 
 <h2 id="trigger-similarity-check">Trigger Similarity Check</h2>
-<pre class="highlight shell tab-shell"><code>curl http://localhost:4910/check
-  -X POST
-  -d @postdata.json
+<pre class="highlight shell tab-shell"><code>curl http://localhost:4910/check <span class="se">\</span>
+  -X POST <span class="se">\</span>
+  -d <span class="s1">'{"assignmentId": 33,
+       "threshold": 50,
+       "directory": "submissions/CS110_W17/A1",
+       "language": "c"}'</span> <span class="se">\</span>
   --header <span class="s2">"Content-Type:application/json"</span>
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
