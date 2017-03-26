@@ -73,8 +73,8 @@ object Cache {
    *          returned by the given fn if run itself
    */
   private def createAndSet(cacheKey: String,
-                   fn: => Future[Seq[Submission]],
-                   expiry: Long = DefaultExpiry): Future[Json] = {
+                           fn: => Future[Seq[Submission]],
+                           expiry: Long = DefaultExpiry): Future[Json] = {
 
     val result = fn.map(_.toList.asJson)
 
