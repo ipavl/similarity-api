@@ -258,6 +258,7 @@ submissions
   -X POST <span class="se">\</span>
   -d <span class="s1">'{"assignmentId": 33,
        "threshold": 50,
+       "studentId": "jdoe05",
        "directory": "submissions/CS110_W17/A1",
        "language": "c"}'</span> <span class="se">\</span>
   --header <span class="s2">"Content-Type:application/json"</span>
@@ -268,6 +269,7 @@ submissions
   <span class="p">[</span>
     <span class="s1">'assignmentId'</span> <span class="o">=&gt;</span> <span class="mi">33</span><span class="p">,</span>
     <span class="s1">'threshold'</span> <span class="o">=&gt;</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s1">'studentId'</span> <span class="o">=&gt;</span> <span class="s1">'jdoe05'</span><span class="p">,</span>
     <span class="s1">'directory'</span> <span class="o">=&gt;</span> <span class="s1">'submissions/CS110_W17/A1'</span><span class="p">,</span>
     <span class="s1">'language'</span> <span class="o">=&gt;</span> <span class="s1">'c'</span><span class="p">,</span>
   <span class="p">]</span>
@@ -298,7 +300,12 @@ submissions
 <tr>
 <td>threshold</td>
 <td>Double</td>
-<td>The minimum % similarity to store results for.</td>
+<td>The minimum % similarity to store results for. The highest result will always be stored regardless of this value.</td>
+</tr>
+<tr>
+<td>studentId</td>
+<td>String</td>
+<td>The name of the submission to store results for.</td>
 </tr>
 <tr>
 <td>directory</td>

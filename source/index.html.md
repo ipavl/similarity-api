@@ -52,6 +52,7 @@ curl http://localhost:4910/check \
   -X POST \
   -d '{"assignmentId": 33,
        "threshold": 50,
+       "studentId": "jdoe05",
        "directory": "submissions/CS110_W17/A1",
        "language": "c"}' \
   --header "Content-Type:application/json"
@@ -65,6 +66,7 @@ $response = $client->post('check', ['json' =>
   [
     'assignmentId' => 33,
     'threshold' => 50,
+    'studentId' => 'jdoe05',
     'directory' => 'submissions/CS110_W17/A1',
     'language' => 'c',
   ]
@@ -84,7 +86,8 @@ This endpoint signals the similarity checker to run a check using the given sett
 Parameter    | Type    | Description
 ------------ | ------- | -----------
 assignmentId | Integer | A shared unique identifier for all submissions for this assignment, such as the internal assignment ID from the LMS.
-threshold    | Double  | The minimum % similarity to store results for.
+threshold    | Double  | The minimum % similarity to store results for. The highest result will always be stored regardless of this value.
+studentId    | String  | The name of the submission to store results for.
 directory    | String  | The directory on the server to check.
 language     | String  | An identifier for the source code's language. See [Language Identifiers](#language-identifiers) for details.
 
