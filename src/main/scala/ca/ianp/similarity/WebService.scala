@@ -23,7 +23,10 @@ object WebService {
         Future {
           val jPlagProvider = new JPlagProvider()
           val output = jPlagProvider.runChecker(settings)
-          val results = jPlagProvider.convertOutput(settings, output).sortWith(_.jPlagResult < _.jPlagResult)
+          val results = jPlagProvider.convertOutput(settings, output)
+                                     .sortWith(_.jPlagResult < _.jPlagResult)
+                                     .filter(s => s.studentA == settings.studentId
+                                               || s.studentB == settings.studentId)
 
           // Always store the max result
           Submission.add(results.last)
