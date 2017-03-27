@@ -7,6 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href='./scaladoc'>View Scaladoc</a>
+  - <a href="https://github.com/ipavl/similarity-api">View Repository</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
