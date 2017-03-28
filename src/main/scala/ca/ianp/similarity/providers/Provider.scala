@@ -47,4 +47,21 @@ trait Provider {
    *  @return a parsable string representation of the results
    */
   def runChecker(settings: CheckRequestBody): String
+
+  /** Return the version of the given submission.
+   *
+   *  The default implementation of this method reads the commit hash of
+   *  the master branch of the git repo containing the submission.
+   *
+   *  @param path the path to the submission (containing the .git directory)
+   *
+   *  @return the version of the submission
+   */
+  def getSubmissionVersion(path: String): String = {
+    import io.Source.fromFile
+
+    val file = fromFile(s"${path}/.git/refs/heads/master")
+
+    return try file.mkString.trim finally file.close()
+  }
 }

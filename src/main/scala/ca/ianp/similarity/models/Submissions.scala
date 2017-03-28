@@ -5,7 +5,9 @@ import slick.driver.MySQLDriver.api._
 
 case class Submission(
   studentA: String,
+  studentAVersion: String,
   studentB: String,
+  studentBVersion: String,
   assignmentId: Int,
   jPlagResult: Double,
   id: Int = 0
@@ -17,7 +19,13 @@ object Submission {
   val submissions = TableQuery[Submissions]
 
   implicit def SubmissionCodecJson: CodecJson[Submission] =
-    casecodec5(Submission.apply, Submission.unapply)("studentA", "studentB", "assignmentId", "jPlagResult", "id")
+    casecodec7(Submission.apply, Submission.unapply)("studentA",
+                                                     "studentAVersion",
+                                                     "studentB",
+                                                     "studentBVersion",
+                                                     "assignmentId",
+                                                     "jPlagResult",
+                                                     "id")
 
   def add(submission: Submission): Unit = {
     db.run(submissions += submission)
@@ -44,10 +52,18 @@ class Submissions(tag: Tag) extends Table[Submission](tag, "submissions") {
 
   def id: Rep[Int] = column[Int]("id", O.PrimaryKey, O.AutoInc)
   def studentA: Rep[String] = column[String]("student_a")
+  def studentAVersion: Rep[String] = column[String]("student_a_version")
   def studentB: Rep[String] = column[String]("student_b")
+  def studentBVersion: Rep[String] = column[String]("student_b_version")
   def assignmentId: Rep[Int] = column[Int]("assignment_id")
   def jPlagResult: Rep[Double] = column[Double]("jplag_result")
   
-  def * = (studentA, studentB, assignmentId, jPlagResult, id) <> ((Submission.apply _).tupled, Submission.unapply)
+  def * = (studentA,
+           studentAVersion,
+           studentB,
+           studentBVersion,
+           assignmentId,
+           jPlagResult,
+           id) <> ((Submission.apply _).tupled, Submission.unapply)
 
 }

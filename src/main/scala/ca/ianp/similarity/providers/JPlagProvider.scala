@@ -29,7 +29,15 @@ class JPlagProvider extends Provider {
     lines map { line =>
       pattern.findFirstIn(line) match {
         case Some(pattern(user1, user2, similarity)) =>
-          new Submission(user1, user2, settings.assignmentId, similarity.toDouble)
+          val studentAVersion = getSubmissionVersion(s"${settings.directory}/${user1}")
+          val studentBVersion = getSubmissionVersion(s"${settings.directory}/${user2}")
+
+          new Submission(user1,
+                         studentAVersion,
+                         user2,
+                         studentBVersion,
+                         settings.assignmentId,
+                         similarity.toDouble)
       }
     }
   }
