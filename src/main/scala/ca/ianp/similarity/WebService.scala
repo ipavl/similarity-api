@@ -46,14 +46,14 @@ object WebService {
         Ok()
       })
 
-    case GET -> Root / "assignments" / IntVar(assignmentId) / "students" => {
+    case GET -> Root / "assignments" / assignmentId / "students" => {
       val cacheKey = s"result:${assignmentId}"
 
       Ok(Cache.getOrFetch(cacheKey,
                           Submission.getAssignmentResults(assignmentId)))
     }
 
-    case GET -> Root / "assignments" / IntVar(assignmentId) / "students" / studentId => {
+    case GET -> Root / "assignments" / assignmentId / "students" / studentId => {
       val cacheKey = s"result:${assignmentId}:${studentId}"
 
       Ok(Cache.getOrFetch(cacheKey,

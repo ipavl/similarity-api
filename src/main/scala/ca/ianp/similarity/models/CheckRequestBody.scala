@@ -1,7 +1,7 @@
 package ca.ianp.similarity.models
 
 case class CheckRequestBody(
-  assignmentId: Int,
+  assignmentId: String,
   threshold: Double,
   studentId: String,
   directory: String,

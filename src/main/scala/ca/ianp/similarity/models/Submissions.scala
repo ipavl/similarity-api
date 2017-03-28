@@ -8,7 +8,7 @@ case class Submission(
   studentAVersion: String,
   studentB: String,
   studentBVersion: String,
-  assignmentId: Int,
+  assignmentId: String,
   jPlagResult: Double,
   id: Int = 0
 )
@@ -36,12 +36,12 @@ object Submission {
     db.run(query.result)
   }
 
-  def getAssignmentResults(assignmentId: Int): Future[Seq[Submission]] = {
+  def getAssignmentResults(assignmentId: String): Future[Seq[Submission]] = {
     val query = submissions.filter(_.assignmentId === assignmentId)
     db.run(query.result)
   }
 
-  def getStudentAssignmentResults(assignmentId: Int, studentId: String): Future[Seq[Submission]] = {
+  def getStudentAssignmentResults(assignmentId: String, studentId: String): Future[Seq[Submission]] = {
     val query = submissions.filter(s => s.assignmentId === assignmentId
       && (s.studentA === studentId || s.studentB === studentId))
     db.run(query.result)
@@ -55,7 +55,7 @@ class Submissions(tag: Tag) extends Table[Submission](tag, "submissions") {
   def studentAVersion: Rep[String] = column[String]("student_a_version")
   def studentB: Rep[String] = column[String]("student_b")
   def studentBVersion: Rep[String] = column[String]("student_b_version")
-  def assignmentId: Rep[Int] = column[Int]("assignment_id")
+  def assignmentId: Rep[String] = column[String]("assignment_id")
   def jPlagResult: Rep[Double] = column[Double]("jplag_result")
   
   def * = (studentA,
