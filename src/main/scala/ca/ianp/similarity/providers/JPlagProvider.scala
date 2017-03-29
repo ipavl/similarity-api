@@ -43,9 +43,11 @@ class JPlagProvider extends Provider {
   }
 
   def runChecker(settings: CheckRequestBody): String = {
+    // Null device to send generated HTML output to for disposal
+    val platformNullDevice = if (System.getProperty("os.name") contains "Windows") "nul" else "/dev/null"
     val language = translateLanguageIdentifier(settings.language)
 
-    val cmd = s"java -jar jplag.jar -l ${language} -s ${settings.directory}"
+    val cmd = s"java -jar jplag.jar -l ${language} -s ${settings.directory} -r ${platformNullDevice}"
     val output = cmd.!!
 
     output
