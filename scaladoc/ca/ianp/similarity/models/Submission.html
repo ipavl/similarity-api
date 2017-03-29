@@ -192,7 +192,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Submission</span><span class="params">(<span name="studentA">studentA: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentB">studentB: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="assignmentId">assignmentId: <span class="extype" name="scala.Int">Int</span></span>, <span name="jPlagResult">jPlagResult: <span class="extype" name="scala.Double">Double</span></span>, <span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Submission</span><span class="params">(<span name="studentA">studentA: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentAVersion">studentAVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentB">studentB: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentBVersion">studentBVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="assignmentId">assignmentId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="jPlagResult">jPlagResult: <span class="extype" name="scala.Double">Double</span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">System.currentTimeMillis() / 1000L</span></span>, <span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
@@ -248,9 +248,9 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ca.ianp.similarity.models.Submission#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(studentA:String,studentB:String,assignmentId:Int,jPlagResult:Double,id:Int):ca.ianp.similarity.models.Submission"></a><a id="&lt;init&gt;:Submission"></a>
+      <a id="&lt;init&gt;(studentA:String,studentAVersion:String,studentB:String,studentBVersion:String,assignmentId:String,jPlagResult:Double,timestamp:Long,id:Int):ca.ianp.similarity.models.Submission"></a><a id="&lt;init&gt;:Submission"></a>
       <span class="permalink">
-      <a href="../../../../ca/ianp/similarity/models/Submission.html#&lt;init&gt;(studentA:String,studentB:String,assignmentId:Int,jPlagResult:Double,id:Int):ca.ianp.similarity.models.Submission" title="Permalink">
+      <a href="../../../../ca/ianp/similarity/models/Submission.html#&lt;init&gt;(studentA:String,studentAVersion:String,studentB:String,studentBVersion:String,assignmentId:String,jPlagResult:Double,timestamp:Long,id:Int):ca.ianp.similarity.models.Submission" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -259,7 +259,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Submission</span><span class="params">(<span name="studentA">studentA: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentB">studentB: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="assignmentId">assignmentId: <span class="extype" name="scala.Int">Int</span></span>, <span name="jPlagResult">jPlagResult: <span class="extype" name="scala.Double">Double</span></span>, <span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span>
+        <span class="name">Submission</span><span class="params">(<span name="studentA">studentA: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentAVersion">studentAVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentB">studentB: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="studentBVersion">studentBVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="assignmentId">assignmentId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="jPlagResult">jPlagResult: <span class="extype" name="scala.Double">Double</span></span>, <span name="timestamp">timestamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">System.currentTimeMillis() / 1000L</span></span>, <span name="id">id: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">0</span></span>)</span>
       </span>
       
       
@@ -338,9 +338,9 @@
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
     </li><li name="ca.ianp.similarity.models.Submission#assignmentId" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="assignmentId:Int"></a>
+      <a id="assignmentId:String"></a>
       <span class="permalink">
-      <a href="../../../../ca/ianp/similarity/models/Submission.html#assignmentId:Int" title="Permalink">
+      <a href="../../../../ca/ianp/similarity/models/Submission.html#assignmentId:String" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -349,7 +349,7 @@
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">assignmentId</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+        <span class="name">assignmentId</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       
       
@@ -541,6 +541,22 @@
       </span>
       
       
+    </li><li name="ca.ianp.similarity.models.Submission#studentAVersion" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="studentAVersion:String"></a>
+      <span class="permalink">
+      <a href="../../../../ca/ianp/similarity/models/Submission.html#studentAVersion:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">studentAVersion</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      
     </li><li name="ca.ianp.similarity.models.Submission#studentB" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="studentB:String"></a>
       <span class="permalink">
@@ -554,6 +570,22 @@
       </span>
       <span class="symbol">
         <span class="name">studentB</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      
+    </li><li name="ca.ianp.similarity.models.Submission#studentBVersion" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="studentBVersion:String"></a>
+      <span class="permalink">
+      <a href="../../../../ca/ianp/similarity/models/Submission.html#studentBVersion:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">studentBVersion</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       
       
@@ -573,6 +605,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ca.ianp.similarity.models.Submission#timestamp" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="timestamp:Long"></a>
+      <span class="permalink">
+      <a href="../../../../ca/ianp/similarity/models/Submission.html#timestamp:Long" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">timestamp</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      
+      
     </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <span class="permalink">
