@@ -10,6 +10,7 @@ case class Submission(
   studentBVersion: String,
   assignmentId: String,
   jPlagResult: Double,
+  timestamp: Long = System.currentTimeMillis() / 1000L,
   id: Int = 0
 )
 
@@ -19,12 +20,13 @@ object Submission {
   val submissions = TableQuery[Submissions]
 
   implicit def SubmissionCodecJson: CodecJson[Submission] =
-    casecodec7(Submission.apply, Submission.unapply)("studentA",
+    casecodec8(Submission.apply, Submission.unapply)("studentA",
                                                      "studentAVersion",
                                                      "studentB",
                                                      "studentBVersion",
                                                      "assignmentId",
                                                      "jPlagResult",
+                                                     "timestamp",
                                                      "id")
 
   def add(submission: Submission): Unit = {
@@ -57,6 +59,7 @@ class Submissions(tag: Tag) extends Table[Submission](tag, "submissions") {
   def studentBVersion: Rep[String] = column[String]("student_b_version")
   def assignmentId: Rep[String] = column[String]("assignment_id")
   def jPlagResult: Rep[Double] = column[Double]("jplag_result")
+  def timestamp: Rep[Long] = column[Long]("timestamp")
   
   def * = (studentA,
            studentAVersion,
@@ -64,6 +67,7 @@ class Submissions(tag: Tag) extends Table[Submission](tag, "submissions") {
            studentBVersion,
            assignmentId,
            jPlagResult,
+           timestamp,
            id) <> ((Submission.apply _).tupled, Submission.unapply)
 
 }
