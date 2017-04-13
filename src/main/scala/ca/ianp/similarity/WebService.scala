@@ -43,7 +43,7 @@ object WebService {
           Cache.clearKey(s"result:${settings.assignmentId}")
         }
 
-        Ok()
+        Accepted(s"/assignments/${settings.assignmentId}/students/${settings.studentId}")
       })
 
     case GET -> Root / "assignments" / assignmentId / "students" => {
