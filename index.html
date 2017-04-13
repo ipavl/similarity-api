@@ -320,6 +320,16 @@ submissions
 </tr>
 </tbody></table>
 
+<h3 id="response-code">Response Code</h3>
+
+<p><code class="prettyprint">202 Accepted</code></p>
+
+<h3 id="response-body">Response Body</h3>
+
+<p>The response body will contain the path to the future resource:</p>
+
+<p><code class="prettyprint">/assignments/33/students/jdoe05</code></p>
+
 <h2 id="retrieve-results-for-student">Retrieve Results for Student</h2>
 <pre class="highlight shell tab-shell"><code>curl http://localhost:4910/assignments/33/students/jdoe05
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -392,6 +402,14 @@ submissions
 </tr>
 </tbody></table>
 
+<h3 id="response-code">Response Code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-body">Response Body</h3>
+
+<p>The response body will contain the matching results as JSON.</p>
+
 <h2 id="retrieve-results-for-all-students">Retrieve Results for All Students</h2>
 <pre class="highlight shell tab-shell"><code>curl http://localhost:4910/assignments/33/students
 </code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -458,6 +476,14 @@ submissions
 <td>A shared unique identifier for all submissions for this assignment, such as the internal assignment ID from the LMS.</td>
 </tr>
 </tbody></table>
+
+<h3 id="response-code">Response Code</h3>
+
+<p><code class="prettyprint">200 OK</code></p>
+
+<h3 id="response-body">Response Body</h3>
+
+<p>The response body will contain the matching results as JSON.</p>
 
           <h1 id="providers">Providers</h1>
 
