@@ -92,6 +92,16 @@ studentId    | String  | The name of the submission to store results for.
 directory    | String  | The directory on the server to check.
 language     | String  | An identifier for the source code's language. See [Language Identifiers](#language-identifiers) for details.
 
+### Response Code
+
+`202 Accepted`
+
+### Response Body
+
+The response body will contain the path to the future resource:
+
+`/assignments/33/students/jdoe05`
+
 ## Retrieve Results for Student
 
 ```shell
@@ -157,6 +167,14 @@ Parameter    | Type    | Description
 assignmentId | String  | A shared unique identifier for all submissions for this assignment, such as the internal assignment ID from the LMS.
 studentId    | String  | The name of the submission to retrieve results for.
 
+### Response Code
+
+`200 OK`
+
+### Response Body
+
+The response body will contain the matching results as JSON.
+
 ## Retrieve Results for All Students
 
 ```shell
@@ -220,3 +238,11 @@ This endpoint returns an array of results for all students for a given assignmen
 Parameter    | Type    | Description
 ------------ | ------- | -----------
 assignmentId | String  | A shared unique identifier for all submissions for this assignment, such as the internal assignment ID from the LMS.
+
+### Response Code
+
+`200 OK`
+
+### Response Body
+
+The response body will contain the matching results as JSON.
