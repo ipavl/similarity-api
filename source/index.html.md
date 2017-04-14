@@ -30,6 +30,8 @@ It is expected that the sets of source code to check will already be on the serv
 
 In this example, all student assignments are under a top-level "submissions" directory, with a course-assignment-student hierarchy beneath.
 
+**Note:** Submission names cannot currently contain hyphens due to the way that results are parsed.
+
 <pre>
 submissions
 ├───CS110_W17
