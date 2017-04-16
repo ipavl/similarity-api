@@ -24,3 +24,9 @@ Building
 --------
 
 To create a .jar file with dependencies for distribution, run `sbt assembly`.
+
+Documentation
+-------------
+
+* [Endpoint documentation](https://ipavl.github.io/similarity-api/) ([source](https://github.com/ipavl/similarity-api/tree/slate-docs))
+* [Scaladoc](https://ipavl.github.io/similarity-api/scaladoc/ca/ianp/similarity/index.html)
